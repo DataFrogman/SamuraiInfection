@@ -14,7 +14,7 @@ When you open the provided infection file you are confronted with a wall of text
 > CATC CCGG CA A TTTT TTTT A A CAAA A A A A A A A A A A A GAAA A GTGG TG GAC GTGA CCCA CGGA CTAG CGTT GAA CGAT CTCA GAA CTCC CGTG CACA CATT CGCA CGCC GCA A A A CGCA GACG A A A A GAG G A TGAA A A TAA CCTG CCC A A A A A CG A A A A A CTC A A A CGAA GAAC
 
 Looking at this, the first thought is intended to be DNA.  There are the four bases: adenine, cytosine, guanine, and thymine.  However, this is just a distraction, it is actually base four encoding.  With the groupings it is a safe guess that A == 0.
-The groupings are frequently less than 4 chars per byte, so there must be some sort of compression in place.  Step one, basic 0 padding, every section that is underfilled gets zeroes added to the front.
+The groupings are frequently less than 4 chars per byte, so there must be some sort of compression in place.  Let's check if it was just a simple conversion, lets get the int of each base4 number and then convert that into base2, once we have the base2 we can piece it together to see what we have.
 
 ```
   /mnt/f/L/Documents/SamuraiInfection/SamuraiInfection   master ❯ hexdump SamuraiInfection.exe -C | head
