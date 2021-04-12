@@ -18,13 +18,12 @@ def listToString(s):
             str1 += "G"
         else:
             str1 += "T"
-        
     return str1
 
 f = open("binary", "r")
-f2 = open("base4", "w+")
-for x in f:
-    if len(x) == 48:
+f2 = open("base4", "w")
+for x in f.readlines():
+    if len(x) == 49:
         one = x[0:8]
         two = x[8:16]
         three = x[16:24]
